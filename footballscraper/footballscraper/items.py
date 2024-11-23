@@ -43,7 +43,6 @@ class NextMatchesItem:
 
 @dataclass
 class ScorersItem:
-    team: str
     player: str
     scorer_points: int
     goals: int
