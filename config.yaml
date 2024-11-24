@@ -1,0 +1,61 @@
+headers:
+  Authority: "footballapi.pulselive.com"
+  Method: "GET"
+  Path: ""
+  Scheme: "https"
+  Accept: "*/*"
+  Accept-Encoding: "gzip"
+  Accept-Language: "en-GB,en-US;q=0.9,en;q=0.8"
+  Cache-Control: "no-cache"
+  Content-Type: "application/x-www-form-urlencoded; charset=UTF-8"
+  Origin: "https://www.premierleague.com"
+  Pragma: "no-cache"
+  Priority: "u=1, i"
+  Referer: "https://www.premierleague.com/"
+
+base_url: "https://footballapi.pulselive.com"
+
+# player stats
+stats:
+- goals
+- goal_assist
+- clean_sheet
+- appearances
+- mins_played
+- yellow_card
+- red_card
+- total_pass
+- touches
+- total_sub_on
+- total_sub_off
+- total_scoring_att # shots
+- ontarget_scoring_att # sots
+- hit_woodwork
+- att_hd_goal # goals from header
+- att_pen_goal # goals from penalty
+- att_freekick_goal # goals from freekick
+- total_offside
+- total_pass
+- total_through_ball
+- total_cross
+- corner_taken
+- interception 
+- outfielder_block
+- total_tackle
+- last_man_tackle
+- total_clearance
+- head_clearance
+- aerial_won
+- own_goals
+- error_lead_to_goal
+- penalty_conceded
+- aerial_lost
+- goals_conceded
+- saves
+- penalty_save
+- punches
+- total_high_claim
+- total_keeper_sweeper
+- keeper_throws
+- goal_kicks
+
