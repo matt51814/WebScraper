@@ -16,6 +16,9 @@ headers:
 base_url:
 
 # player stats
+
+output_dir: player_stats
+
 stats:
 - goals
 - goal_assist
@@ -58,3 +61,7 @@ stats:
 - total_keeper_sweeper
 - keeper_throws
 - goal_kicks
+
+# results
+
+results_output_dir: results
