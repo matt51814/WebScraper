@@ -2,12 +2,19 @@ import yaml
 import requests
 import os
 import json
+from tqdm import tqdm
+from loguru import logger
+
+logger.remove()
+logger.add(lambda msg: tqdm.write(msg, end=""))
 
 
 class Scraper:
     def __init__(self):
+        logger.info("Loading config.yaml file")
         with open("config.yaml", "r") as file:
             self.config = yaml.safe_load(file)
+        logger.success("config.yaml successfully loaded")
         self.headers = self.config["headers"]
         self.base_url = self.config["base_url"]
         self.result_dict = {}
@@ -36,8 +43,11 @@ class Scraper:
         return
 
     def write_all_data(self) -> None:
-        for key in self.result_dict.keys():
+        logger.info("Writing all data")
+        for key in tqdm(self.result_dict.keys()):
             self.write_data(results=self.result_dict[key], filename=key)
+            logger.info(f"Written {key}")
+        logger.success("Data successfully written")
         return
 
     def get_page_data(self, *args) -> requests.models.Response:

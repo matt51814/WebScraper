@@ -1,6 +1,10 @@
 import json
 from tqdm import tqdm
 from scraper import Scraper
+from loguru import logger
+
+logger.remove()
+logger.add(lambda msg: tqdm.write(msg, end=""))
 
 
 class PlayerStatsScraper(Scraper):
@@ -9,6 +13,7 @@ class PlayerStatsScraper(Scraper):
         self.stats = self.config["stats"]
         self.output_dir = self.config["player_stats_output_dir"]
         self.result_dict = {s: [] for s in self.stats}
+        logger.success("Player Stats Scraper successfully loaded")
 
     @staticmethod
     def generate_path(stat: str, page_num: int) -> str:
@@ -34,13 +39,15 @@ class PlayerStatsScraper(Scraper):
         return
 
     def get_all_data(self) -> None:
+        logger.info("Getting data...")
         for key in tqdm(self.result_dict.keys()):
+            logger.info(f"Getting {key} data...")
             self.get_data(key)
+        logger.success("Data retrieved")
         return
 
 
 if __name__ == "__main__":
     pss = PlayerStatsScraper()
-    print(pss)
     pss.get_all_data()
     pss.write_all_data()

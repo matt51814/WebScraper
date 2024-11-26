@@ -7,16 +7,16 @@ logger.remove()
 logger.add(lambda msg: tqdm.write(msg, end=""))
 
 
-class ResultsScraper(Scraper):
+class FixturesScraper(Scraper):
     def __init__(self):
         super().__init__()
-        self.output_dir = self.config["results_output_dir"]
-        self.result_dict = {"results": []}
-        logger.success("Results Scraper successfully loaded")
+        self.output_dir = self.config["fixtures_output_dir"]
+        self.result_dict = {"fixtures": []}
+        logger.success("Fixtures Scraper successfully loaded")
 
     @staticmethod
     def generate_path(page_num: int) -> str:
-        return f"/football/fixtures?comps=1&compSeasons=719&teams=1,2,127,130,131,4,6,7,34,8,26,10,11,12,23,15,20,21,25,38&page={page_num}&pageSize=20&sort=desc&statuses=A,C&altIds=true&fast=false"
+        return f"/football/fixtures?comps=1&teams=1,2,127,130,131,4,6,7,34,8,26,10,11,12,23,15,20,21,25,38&compSeasons=719&page={page_num}&pageSize=10&statuses=U,L&altIds=true&fast=false"
 
     def get_data(self, key) -> None:
         page_num = 0
@@ -41,7 +41,6 @@ class ResultsScraper(Scraper):
 
 
 if __name__ == "__main__":
-    rs = ResultsScraper()
-    print(rs)
-    rs.get_all_data()
-    rs.write_all_data()
+    fs = FixturesScraper()
+    fs.get_all_data()
+    fs.write_all_data()
