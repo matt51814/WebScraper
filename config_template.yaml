@@ -1,3 +1,5 @@
+# request
+
 headers:
   Authority:
   Method:
@@ -17,7 +19,7 @@ base_url:
 
 # player stats
 
-output_dir: player_stats
+player_stats_output_dir: player_stats
 
 stats:
 - goals
@@ -65,3 +67,11 @@ stats:
 # results
 
 results_output_dir: results
+
+# fixtures
+
+fixtures_output_dir: fixtures
+
+# standings
+
+standings_output_dir: standings
