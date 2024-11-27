@@ -4,6 +4,7 @@ import os
 import json
 from tqdm import tqdm
 from loguru import logger
+from constants import CONFIG_YAML
 
 logger.remove()
 logger.add(lambda msg: tqdm.write(msg, end=""))
@@ -12,7 +13,7 @@ logger.add(lambda msg: tqdm.write(msg, end=""))
 class Scraper:
     def __init__(self):
         logger.info("Loading config.yaml file")
-        with open("config.yaml", "r") as file:
+        with open(CONFIG_YAML, "r") as file:
             self.config = yaml.safe_load(file)
         logger.success("config.yaml successfully loaded")
         self.headers = self.config["headers"]
