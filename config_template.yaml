@@ -1,3 +1,12 @@
+# mongo
+
+connection_str: mongodb://mongodb
+db_name: premier
+collections:
+- fixtures
+- results
+- standings
+
 # request
 
 headers:
