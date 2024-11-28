@@ -4,7 +4,7 @@ import os
 import json
 from tqdm import tqdm
 from loguru import logger
-from constants import CONFIG_YAML
+from constants import CONFIG_YAML, JSON_DIR
 
 logger.remove()
 logger.add(lambda msg: tqdm.write(msg, end=""))
@@ -37,9 +37,9 @@ class Scraper:
         return False
 
     def write_data(self, results: list[dict], filename: str) -> None:
-        if not os.path.exists(self.output_dir):
-            os.mkdir(self.output_dir)
-        with open(f"{self.output_dir}/{filename}.json", "w") as file:
+        if not os.path.exists(JSON_DIR):
+            os.mkdir(JSON_DIR)
+        with open(f"{JSON_DIR}/{filename}.json", "w") as file:
             json.dump(results, file)
         return
 

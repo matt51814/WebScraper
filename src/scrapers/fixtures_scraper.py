@@ -10,7 +10,6 @@ logger.add(lambda msg: tqdm.write(msg, end=""))
 class FixturesScraper(Scraper):
     def __init__(self):
         super().__init__()
-        self.output_dir = self.config["fixtures_output_dir"]
         self.result_dict = {"fixtures": []}
         logger.success("Fixtures Scraper successfully loaded")
 
@@ -26,7 +25,7 @@ class FixturesScraper(Scraper):
             content_dict = json.loads(response.content.decode("utf-8"))
             if self.check_for_no_content(content_dict, "content"):
                 break
-            results.append(content_dict)
+            results.extend(content_dict["content"])
             page_num += 1
         self.result_dict[key] = results
         return
