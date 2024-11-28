@@ -11,7 +11,6 @@ class PlayerStatsScraper(Scraper):
     def __init__(self):
         super().__init__()
         self.stats = self.config["stats"]
-        self.output_dir = self.config["player_stats_output_dir"]
         self.result_dict = {s: [] for s in self.stats}
         logger.success("Player Stats Scraper successfully loaded")
 
@@ -33,7 +32,7 @@ class PlayerStatsScraper(Scraper):
             content_dict = json.loads(response.content.decode("utf-8"))
             if self.check_for_no_content(content_dict):
                 break
-            results.append(content_dict)
+            results.extend(content_dict["stats"]["content"])
             page_num += 1
         self.result_dict[key] = results
         return

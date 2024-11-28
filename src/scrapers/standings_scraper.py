@@ -10,7 +10,6 @@ logger.add(lambda msg: tqdm.write(msg, end=""))
 class StandingsScraper(Scraper):
     def __init__(self):
         super().__init__()
-        self.output_dir = self.config["standings_output_dir"]
         self.result_dict = {"standings": []}
         logger.success("Standings Scraper successfully loaded")
 
@@ -21,7 +20,7 @@ class StandingsScraper(Scraper):
     def get_data(self, key) -> None:
         response = self.get_page_data()
         content_dict = json.loads(response.content.decode("utf-8"))
-        self.result_dict[key] = content_dict
+        self.result_dict[key] = content_dict["tables"][0]["entries"]
         return
 
     def get_all_data(self) -> None:
