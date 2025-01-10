@@ -1,7 +1,7 @@
 import pymongo
 import json
 import yaml
-from constants import CONFIG_YAML, ROOT_DIR, JSON_DIR
+from constants import CONFIG_YAML, JSON_DIR
 from loguru import logger
 from pathlib import Path
 
@@ -11,6 +11,7 @@ with open(CONFIG_YAML, "r") as file:
 
 # MongoDB connection
 client = pymongo.MongoClient(config["connection_str"])
+client.drop_database(config["db_name"])
 db = client[config["db_name"]]
 
 for col in config["collections"]:
